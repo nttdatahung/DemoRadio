@@ -37,4 +37,11 @@ class PrefsDataSource @Inject constructor(){
         // TODO: implement
         return "fake password"
     }
+
+    fun isIntroScreenShown(): Boolean {
+        return SharedPrefsUtil.get("ket_isIntroScreenShown", false)
+    }
+    fun setIsIntroScreenShown(isShow: Boolean){
+        SharedPrefsUtil.put("ket_isIntroScreenShown", isShow)
+    }
 }

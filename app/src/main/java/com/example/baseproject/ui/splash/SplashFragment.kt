@@ -10,7 +10,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.fragment.findNavController
 import com.example.baseproject.ui.base.fragment.BaseFragment
 import com.example.baseproject.databinding.FragmentSplashBinding
 import com.example.baseproject.ui.activities.MainActivityViewModel
@@ -20,7 +19,7 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class SplashFragment @Inject constructor() : BaseFragment() {
-    private lateinit var dataBinding: FragmentSplashBinding
+    private lateinit var binding: FragmentSplashBinding
     private val splashViewModel by viewModels<SplashViewModel>()
     private val activityViewModel by activityViewModels<MainActivityViewModel>()
 
@@ -29,10 +28,10 @@ class SplashFragment @Inject constructor() : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        dataBinding = FragmentSplashBinding.inflate(inflater)
-        dataBinding.lifecycleOwner = viewLifecycleOwner
+        binding = FragmentSplashBinding.inflate(inflater)
+        binding.lifecycleOwner = viewLifecycleOwner
         Log.d("SplashFragment", "onCreateView: ")
-        return dataBinding.root
+        return binding.root
     }
 
     override fun initDataOnCreate() {
@@ -47,7 +46,7 @@ class SplashFragment @Inject constructor() : BaseFragment() {
                         if (it.isNeedToShowIntro)
                             navigate(SplashFragmentDirections.actionSplashFragmentToIntroFragment())
                         else
-                            navigate(SplashFragmentDirections.actionSplashFragmentToHomeFragment())
+                            navigate(SplashFragmentDirections.actionSplashFragmentToStationListFragment())
                         activityViewModel.onSplashScreenEnded()
                     }
                 }

@@ -1,5 +1,6 @@
 package com.example.baseproject.utils
 
+import com.example.baseproject.MyApplication
 import com.example.baseproject.data.local.entities.FolderMail
 import com.example.baseproject.data.model.EmailObject
 
@@ -32,6 +33,10 @@ class Utils {
             val mutableList = listMails.toMutableList()
             mutableList.removeAt(index)
             return mutableList.toList()
+        }
+
+        fun getLocalCountryCode(): String {
+            return MyApplication.instance.resources.configuration.locales.get(0) ?.country ?:""
         }
     }
 }

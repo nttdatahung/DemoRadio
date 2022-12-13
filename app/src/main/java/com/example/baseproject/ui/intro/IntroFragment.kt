@@ -30,7 +30,7 @@ class IntroFragment @Inject constructor(
     override fun initListener() {
         binding.btnDoneInto.setOnClickListener{
             findNavController().navigate(
-                IntroFragmentDirections.actionIntroFragmentToHomeFragment()
+                IntroFragmentDirections.actionIntroFragmentToStationListFragment()
             )
         }
     }

@@ -2,6 +2,7 @@ package com.example.baseproject.data.repository
 
 import com.example.baseproject.data.local.PrefsDataSource
 import com.example.baseproject.data.local.entities.FolderMail
+import com.example.baseproject.utils.SharedPrefsUtil
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -20,6 +21,14 @@ class PrefsRepository @Inject constructor(private val prefsDataSource: PrefsData
 
     fun getCurrentAccountEmail(): String {
         return prefsDataSource.getCurrentAccountEmail()
+    }
+
+    fun isIntroScreenShown(): Boolean {
+        return prefsDataSource.isIntroScreenShown()
+    }
+
+    fun setIsIntroScreenShown(isShow: Boolean){
+        prefsDataSource.setIsIntroScreenShown(true)
     }
 
 }

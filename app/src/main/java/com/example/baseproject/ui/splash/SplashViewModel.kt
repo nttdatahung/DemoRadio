@@ -32,12 +32,13 @@ class SplashViewModel @Inject constructor(
             withContext(ioDispatcher){
                 Log.d(TAG, "initNecessaryData: ")
                 delay(500L)
-//                if(!prefsRepository.isIntroScreenShown()){
-//                    _splashUiState.update { it.copy(isSplashEnded = true, isNeedToShowIntro = true) }
-//                    stationRepository.getRecommendStations()
-//                } else {
-//                    _splashUiState.update { it.copy(isSplashEnded = true, isNeedToShowIntro = false) }
-//                }
+                if(!prefsRepository.isIntroScreenShown()){
+                    _splashUiState.update { it.copy(isSplashEnded = true, isNeedToShowIntro = true) }
+                    val stations = stationRepository.getRecommendStations()
+                    stationRepository.saveToDb(stations)
+                } else {
+                    _splashUiState.update { it.copy(isSplashEnded = true, isNeedToShowIntro = false) }
+                }
             }
         }
     }
