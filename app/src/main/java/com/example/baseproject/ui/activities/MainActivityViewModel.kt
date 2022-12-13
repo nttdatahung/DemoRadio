@@ -35,19 +35,6 @@ class MainActivityViewModel @Inject constructor(
         folderId = prefsRepository.getCurrentFolderId()
     }
 
-    fun validateAccount() {
-        viewModelScope.launch(coroutineExceptionHandler) {
-            Log.d("MainActivityViewModel", "validateAccount: launch")
-            withContext(ioDispatcher){
-                var accountEmail = prefsRepository.getCurrentAccountEmail()
-                _splashUiState.update {
-                    it.copy(isDataReady = true, isAccountAvailable = accountEmail.isNotEmpty())
-                }
-                Log.d("MainActivityViewModel", "validateAccount: done")
-            }
-        }
-    }
-
     fun setBottomMenuState(isShow: Boolean) {
         _bottomSheetUiState.update { it.copy(isShow = isShow) }
     }
@@ -56,9 +43,12 @@ class MainActivityViewModel @Inject constructor(
         _bottomSheetUiState.update { it.copy(isShow = false) }
     }
 
+    fun onSplashScreenEnded() {
+        _splashUiState.update { it.copy(isSplashScreenEnded = true) }
+    }
+
     data class SplashUiState(
-        var isDataReady: Boolean = false,
-        var isAccountAvailable: Boolean = false
+        var isSplashScreenEnded: Boolean = false
     )
     data class BottomSheetUiState(
         var isShow: Boolean = false

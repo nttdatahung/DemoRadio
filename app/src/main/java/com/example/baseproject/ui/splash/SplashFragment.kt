@@ -42,27 +42,17 @@ class SplashFragment @Inject constructor() : BaseFragment() {
     override fun observeDataChange() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                activityViewModel.splashUiState.collect {
-                    if (it.isDataReady) {
-                        if (it.isAccountAvailable)
-                            openHomeFragment()
-                        else openLoginFragment()
+                splashViewModel.splashUiState.collect {
+                    if (it.isSplashEnded) {
+                        if (it.isNeedToShowIntro)
+                            navigate(SplashFragmentDirections.actionSplashFragmentToIntroFragment())
+                        else
+                            navigate(SplashFragmentDirections.actionSplashFragmentToHomeFragment())
+                        activityViewModel.onSplashScreenEnded()
                     }
                 }
             }
 
         }
-    }
-
-    private fun openHomeFragment() {
-        findNavController().navigate(
-            SplashFragmentDirections.actionSplashFragmentToHomeFragment()
-        )
-    }
-
-    private fun openLoginFragment() {
-        findNavController().navigate(
-            SplashFragmentDirections.actionSplashFragmentToLoginFragment()
-        )
     }
 }

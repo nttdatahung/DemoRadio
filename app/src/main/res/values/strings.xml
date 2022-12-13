@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">BaseProject</string>
+    <string name="intro"><![CDATA[Intro\n This is the best Radio & Podcast app]]></string>
 </resources>

@@ -41,24 +41,21 @@
             app:popUpToInclusive="true"
             app:destination="@id/homeFragment" />
         <action
-            android:id="@+id/action_splashFragment_to_loginFragment"
-            app:popUpTo="@id/splashFragment"
-            app:popUpToInclusive="true"
-            app:destination="@id/loginFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/loginFragment"
-        tools:layout="@layout/fragment_login"
-        android:name="com.example.baseproject.ui.login.LoginFragment"
-        android:label="LoginFragment" >
-        <action
-            android:id="@+id/action_loginFragment_to_homeFragment"
-            app:popUpTo="@id/loginFragment"
-            app:popUpToInclusive="true"
-            app:destination="@id/homeFragment" />
+            android:id="@+id/action_splashFragment_to_introFragment"
+            app:destination="@id/introFragment"
+            app:popUpTo="@id/splashFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.example.baseproject.ui.search.SearchFragment"
         android:label="SearchFragment" />
+    <fragment
+        android:id="@+id/introFragment"
+        android:name="com.example.baseproject.ui.intro.IntroFragment"
+        android:label="IntroFragment" >
+        <action
+            android:id="@+id/action_introFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/introFragment" />
+    </fragment>
 </navigation>

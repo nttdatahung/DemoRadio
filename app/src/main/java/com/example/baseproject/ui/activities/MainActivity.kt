@@ -21,13 +21,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        activityViewModel.validateAccount()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             val content: View = findViewById(android.R.id.content)
             content.viewTreeObserver.addOnPreDrawListener(
                 object : ViewTreeObserver.OnPreDrawListener{
                     override fun onPreDraw(): Boolean {
-                        return if(activityViewModel.splashUiState.value.isDataReady){
+                        return if(activityViewModel.splashUiState.value.isSplashScreenEnded){
                             content.viewTreeObserver.removeOnPreDrawListener(this)
                             //Nothing to do here, let the virtual SplashFragment handle the rest
                             true

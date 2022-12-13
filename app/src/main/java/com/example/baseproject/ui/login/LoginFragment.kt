@@ -64,8 +64,8 @@ class LoginFragment @Inject constructor() : BaseFragment() {
     }
 
     private fun openHomeFragment() {
-        findNavController().navigate(
-            LoginFragmentDirections.actionLoginFragmentToHomeFragment()
-        )
+//        findNavController().navigate(
+//            LoginFragmentDirections.actionLoginFragmentToHomeFragment()
+//        )
     }
 }

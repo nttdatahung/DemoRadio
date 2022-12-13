@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavDirections
+import androidx.navigation.fragment.findNavController
 
 abstract class BaseFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -67,5 +69,9 @@ abstract class BaseFragment : Fragment() {
     override fun onStop() {
         super.onStop()
         Log.d("BaseFragment", "onStop: ")
+    }
+
+    open fun navigate(directions: NavDirections) {
+        findNavController().navigate(directions)
     }
 }
