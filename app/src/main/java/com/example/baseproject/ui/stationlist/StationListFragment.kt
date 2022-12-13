@@ -1,4 +1,4 @@
-package com.example.baseproject.ui
+package com.example.baseproject.ui.stationlist
 
 import android.os.Bundle
 import android.util.Log

@@ -36,7 +36,8 @@ class Utils {
         }
 
         fun getLocalCountryCode(): String {
-            return MyApplication.instance.resources.configuration.locales.get(0) ?.country ?:""
+            // TODO: correct
+            return "vn"
         }
     }
 }

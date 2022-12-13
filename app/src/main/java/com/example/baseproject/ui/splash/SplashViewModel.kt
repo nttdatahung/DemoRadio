@@ -4,6 +4,7 @@ import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.baseproject.data.remote.base.Result
 import com.example.baseproject.data.repository.PrefsRepository
 import com.example.baseproject.data.repository.StationRepository
 import com.example.baseproject.ui.base.BaseViewModel
@@ -34,8 +35,14 @@ class SplashViewModel @Inject constructor(
                 delay(500L)
                 if(!prefsRepository.isIntroScreenShown()){
                     _splashUiState.update { it.copy(isSplashEnded = true, isNeedToShowIntro = true) }
-                    val stations = stationRepository.getRecommendStations()
-                    stationRepository.saveToDb(stations)
+                    when(val result = stationRepository.getRecommendStations()){
+                        is Result.Error -> Log.d(TAG, "initNecessaryData: error")
+                        is Result.Success -> {
+                            Log.d(TAG, "initNecessaryData: success 1")
+                            stationRepository.saveToDb(result.data)
+                            Log.d(TAG, "initNecessaryData: success")
+                        }
+                    }
                 } else {
                     _splashUiState.update { it.copy(isSplashEnded = true, isNeedToShowIntro = false) }
                 }

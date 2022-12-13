@@ -1,11 +1,15 @@
 package com.example.baseproject.data.model
 
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
+@Entity(tableName = "radio_station")
 data class RadioStation(
+    @PrimaryKey
     @SerializedName("changeuuid")
-    val changeuuid: String? = null,
+    val changeuuid: String = "",
 
     @SerializedName("stationuuid")
     val stationuuid: String? = null,
@@ -38,7 +42,7 @@ data class RadioStation(
     val countrycode: String? = null,
 
     @SerializedName("iso_3166_2")
-    val iso31662: Any? = null,
+    val iso31662: String? = null,
 
     @SerializedName("state")
     val state: String? = null,
@@ -104,10 +108,10 @@ data class RadioStation(
     val sslError: Int? = null,
 
     @SerializedName("geo_lat")
-    val geoLat: Any? = null,
+    val geoLat: Double? = null,
 
     @SerializedName("geo_long")
-    val geoLong: Any? = null,
+    val geoLong: Double? = null,
 
     @SerializedName("has_extended_info")
     val hasExtendedInfo: Boolean? = null

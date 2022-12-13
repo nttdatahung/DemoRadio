@@ -5,6 +5,7 @@ import androidx.room.Room
 import com.example.baseproject.data.local.RoomDB
 import com.example.baseproject.data.local.daos.EmailDao
 import com.example.baseproject.data.local.daos.AccountDao
+import com.example.baseproject.data.local.daos.RadioStationDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -31,5 +32,10 @@ class DatabaseModule {
     @Provides
     fun provideEmailDao(roomDB: RoomDB): EmailDao{
         return roomDB.emailDao()
+    }
+
+    @Provides
+    fun provideRadioStationDao(roomDB: RoomDB): RadioStationDao{
+        return roomDB.radioStationDao()
     }
 }

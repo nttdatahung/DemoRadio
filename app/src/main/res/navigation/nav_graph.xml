@@ -59,6 +59,6 @@
     </fragment>
     <fragment
         android:id="@+id/stationListFragment"
-        android:name="com.example.baseproject.ui.StationListFragment"
+        android:name="com.example.baseproject.ui.stationlist.StationListFragment"
         android:label="StationListFragment" />
 </navigation>
