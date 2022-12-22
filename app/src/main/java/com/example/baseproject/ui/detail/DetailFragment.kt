@@ -17,8 +17,7 @@ import com.example.baseproject.databinding.FragmentDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class DetailFragment : BaseFragment() {
-    private lateinit var dataBinding: FragmentDetailBinding
+class DetailFragment : BaseFragment<FragmentDetailBinding>() {
     private val detailViewModel by viewModels<DetailViewModel>()
     private val mainActivityViewModel by activityViewModels<MainActivityViewModel>()
     private var backPressedCallback: OnBackPressedCallback? = null
@@ -34,26 +33,16 @@ class DetailFragment : BaseFragment() {
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        dataBinding = FragmentDetailBinding.inflate(inflater)
-        dataBinding.lifecycleOwner = viewLifecycleOwner
-        return dataBinding.root
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
     }
 
     override fun initView() {
-        dataBinding.email = mainActivityViewModel.emailForDetailView
+        binding.email = mainActivityViewModel.emailForDetailView
     }
 
     override fun initListener() {
-        dataBinding.btnDelete.setOnClickListener {
+        binding.btnDelete.setOnClickListener {
             mainActivityViewModel.detailAction = Action.DELETE
             backPressedCallback?.handleOnBackPressed()
         }
@@ -65,7 +54,7 @@ class DetailFragment : BaseFragment() {
 //                Toast.makeText(context, "updating user...", Toast.LENGTH_SHORT).show()
 //            } else {
 //                Toast.makeText(context, "finish", Toast.LENGTH_SHORT).show()
-//                dataBinding.user = mainActivityViewModel.selectedUser
+//                binding.user = mainActivityViewModel.selectedUser
 //            }
 //        }
     }

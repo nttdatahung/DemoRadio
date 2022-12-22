@@ -27,22 +27,10 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class HomeFragment : BaseFragment() {
+class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     private lateinit var adapter: HomeAdapter
-    private lateinit var dataBinding: FragmentHomeBinding
     private val homeViewModel by viewModels<HomeViewModel>()
     private val mainActivityViewModel by activityViewModels<MainActivityViewModel>()
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        dataBinding = FragmentHomeBinding.inflate(inflater)
-        dataBinding.lifecycleOwner = viewLifecycleOwner
-        Log.d("HomeFragment", "onCreateView: ")
-        return dataBinding.root
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,23 +62,23 @@ class HomeFragment : BaseFragment() {
             }
         }
         adapter = HomeAdapter(itemClickListener)
-        dataBinding.rcvHome.adapter = adapter
+        binding.rcvHome.adapter = adapter
         val layoutManager = LinearLayoutManager(requireContext())
         layoutManager.orientation = LinearLayoutManager.VERTICAL
-        dataBinding.rcvHome.layoutManager = layoutManager
+        binding.rcvHome.layoutManager = layoutManager
         AppCompatResources.getDrawable(requireContext(), R.drawable.home_divider)?.let { drawable ->
             val itemDecoration =
                 DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL)
             itemDecoration.setDrawable(drawable)
-            dataBinding.rcvHome.addItemDecoration(itemDecoration)
+            binding.rcvHome.addItemDecoration(itemDecoration)
         }
     }
 
     override fun initListener() {
-        dataBinding.btnRefresh.setOnClickListener {
+        binding.btnRefresh.setOnClickListener {
             homeViewModel.refreshMails()
         }
-        dataBinding.btnMenu.setOnClickListener {
+        binding.btnMenu.setOnClickListener {
             mainActivityViewModel.setBottomMenuState(true)
 //            homeViewModel.deleteData()
         }
@@ -104,7 +92,7 @@ class HomeFragment : BaseFragment() {
                     showLoading(it.isLoading)
                     adapter.submitList(it.mails){
                         if(it.scrollToTop){
-                            dataBinding.rcvHome.smoothScrollToPosition(0)
+                            binding.rcvHome.smoothScrollToPosition(0)
                             homeViewModel.onRcvScrolledToTop()
                         }
                     }
@@ -146,11 +134,11 @@ class HomeFragment : BaseFragment() {
 
 
     private fun showLoading(isShow: Boolean) {
-        dataBinding.loadingView.visibility = if (isShow) View.VISIBLE else View.GONE
+        binding.loadingView.visibility = if (isShow) View.VISIBLE else View.GONE
     }
 
     private fun showUIRefreshing(isRefreshing: Boolean) {
-        dataBinding.btnRefresh.text = if (isRefreshing) "Refreshing..." else "Pull to Refresh"
+        binding.btnRefresh.text = if (isRefreshing) "Refreshing..." else "Pull to Refresh"
     }
 
     private fun isBackFromDetailView(): Boolean {

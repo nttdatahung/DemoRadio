@@ -16,22 +16,12 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class LoginFragment @Inject constructor() : BaseFragment() {
-    private lateinit var dataBinding: FragmentLoginBinding
+class LoginFragment @Inject constructor() : BaseFragment<FragmentLoginBinding>() {
     private val loginViewModel by viewModels<LoginViewModel>()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        dataBinding = FragmentLoginBinding.inflate(inflater)
-        dataBinding.lifecycleOwner = viewLifecycleOwner
-        return dataBinding.root
-    }
 
     override fun initListener() {
-        dataBinding.btnLogIn.setOnClickListener {
+        binding.btnLogIn.setOnClickListener {
             loginViewModel.testGettingStations()
 //            loginViewModel.logInThenGetListFolder(
 //                // TODO: correct data
@@ -45,7 +35,7 @@ class LoginFragment @Inject constructor() : BaseFragment() {
         loginViewModel.logInUIState.observe(viewLifecycleOwner){
             when(it.state){
                 LOGIN_STATE_START -> {
-                    showLoading(dataBinding.loadingView, true)
+                    showLoading(binding.loadingView, true)
                     ToastUtil.show("Logging in...")
                 }
                 LOGIN_ERROR_COROUTINE_EXCEPTION -> {

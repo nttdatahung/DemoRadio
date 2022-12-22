@@ -14,18 +14,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class IntroFragment @Inject constructor(
 
-): BaseFragment() {
-    private lateinit var binding: FragmentIntroBinding
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentIntroBinding.inflate(inflater)
-        binding.lifecycleOwner = viewLifecycleOwner
-        return binding.root
-    }
+): BaseFragment<FragmentIntroBinding>() {
 
     override fun initListener() {
         binding.btnDoneInto.setOnClickListener{

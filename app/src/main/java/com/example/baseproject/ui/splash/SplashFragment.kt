@@ -18,21 +18,9 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class SplashFragment @Inject constructor() : BaseFragment() {
-    private lateinit var binding: FragmentSplashBinding
+class SplashFragment @Inject constructor() : BaseFragment<FragmentSplashBinding>() {
     private val splashViewModel by viewModels<SplashViewModel>()
     private val activityViewModel by activityViewModels<MainActivityViewModel>()
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentSplashBinding.inflate(inflater)
-        binding.lifecycleOwner = viewLifecycleOwner
-        Log.d("SplashFragment", "onCreateView: ")
-        return binding.root
-    }
 
     override fun initDataOnCreate() {
         splashViewModel.initNecessaryData()

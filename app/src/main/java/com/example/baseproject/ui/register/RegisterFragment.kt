@@ -7,15 +7,7 @@ import android.view.ViewGroup
 import com.example.baseproject.ui.base.fragment.BaseFragment
 import com.example.baseproject.databinding.FragmentRegisterBinding
 
-class RegisterFragment : BaseFragment() {
+class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {
     private lateinit var dataBinding : FragmentRegisterBinding
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        dataBinding = FragmentRegisterBinding.inflate(inflater)
-        return dataBinding.root
-    }
 }

@@ -15,7 +15,7 @@ import com.example.baseproject.ui.base.fragment.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SearchFragment: BaseFragment() {
+class SearchFragment: BaseFragment<FragmentSearchBinding>() {
     lateinit var dataBinding:FragmentSearchBinding
     private val activityViewModel by activityViewModels<MainActivityViewModel>()
     private var backPressedCallback : OnBackPressedCallback? = null
@@ -26,16 +26,6 @@ class SearchFragment: BaseFragment() {
             setFragmentResult(RESULT_BACK_FROM_SEARCH, Bundle())
             findNavController().navigateUp()
         }
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        dataBinding = FragmentSearchBinding.inflate(inflater)
-        dataBinding.lifecycleOwner = viewLifecycleOwner
-        return dataBinding.root
     }
 
     companion object{
